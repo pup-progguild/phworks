@@ -15,7 +15,6 @@ var Login = React.createClass({
     ],
     login: function(e) {
         e.preventDefault();
-
         var user = {
             username: this.refs.username.getDOMNode().value,
             password: this.refs.password.getDOMNode().value
@@ -23,7 +22,7 @@ var Login = React.createClass({
 
         Auth.login(user.username, user.password, (function(res) {
             if(res.authenticated) {
-                this.transitionTo('/search');
+                this.transitionTo('/profile');
             } else {
                 this.setState({ error: true })
             }
@@ -34,38 +33,41 @@ var Login = React.createClass({
     },
     render: function() {
         return (
-             <div class="login-container">
+             <div className="login-container" id="login">
             
-                <div class="login-box animated fadeInDown">
-                    <div class="login-logo"></div>
-                    <div class="login-body">
-                        <div class="login-title"><strong>Welcome</strong>, Please login</div>
-                        <form action="index.html" class="form-horizontal" method="post">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Username"/>
+                <div className="login-box animated fadeInDown">
+                    <div className="login-logo"></div>
+                    <div className="login-body">
+                        <div className="login-title"><strong>Welcome</strong>, Please login</div>
+                        <form className="form-horizontal">
+                        <div className="form-group">
+                            <div className="col-md-12">
+                                <input ref="username" type="text" className="form-control" placeholder="Username"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <input type="password" class="form-control" placeholder="Password"/>
+                        <div className="form-group">
+                            <div className="col-md-12">
+                                <input ref="password" type="password" className="form-control" placeholder="Password"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
+                        <div className="form-group">
+                        {this.state.error && (
+                                <h5>Incorrect username or password</h5>
+                            )}
+                            <div className="col-md-6">
+                                <a href="#" className="btn btn-link btn-block">Forgot your password?</a>
                             </div>
-                            <div class="col-md-6">
-                                <button class="btn btn-info btn-block">Log In</button>
+                            <div className="col-md-6">
+                                <button className="btn btn-info btn-block" type="submit" onClick={this.login}>Log In</button>
                             </div>
                         </div>
                         </form>
                     </div>
-                    <div class="login-footer">
-                        <div class="pull-left">
-                            &copy; 2014 AppName
+                    <div className="login-footer">
+                        <div className="pull-left">
+                            &copy; 2015 PHWorks
                         </div>
-                        <div class="pull-right">
+                        <div className="pull-right">
                             <a href="#">About</a> |
                             <a href="#">Privacy</a> |
                             <a href="#">Contact Us</a>
