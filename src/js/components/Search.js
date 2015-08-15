@@ -5,12 +5,12 @@ var React = require('react'),
     Auth = require('./Auth');
 
 var Search = React.createClass({
-    getUserID: function() {
+    getUserId: function() {
         $.ajax(this.state.ajaxUrl, {
             type: 'GET',
             success: function(res) {
                 this.setState({
-                    userId: res.user.user_id,
+                    userId: res.user.user_id
                 });
             }.bind(this)
         });
@@ -20,6 +20,9 @@ var Search = React.createClass({
             ajaxUrl: 'http://192.168.0.107:8000' +
                      '/api/authenticate/user?token=' + Auth.getToken()
         });
+    },
+    componentDidMount: function() {
+        this.getUserId();
     },
     render: function() {
         return (
