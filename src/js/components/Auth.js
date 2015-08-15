@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
 function authenticateUser(username, password, callback) {
-    $.ajax('http://10.232.5.215:8000/', {
+    $.ajax('http://10.232.5.215:8000/api/authenticate', {
         type: 'POST',
         data: {
             username: username,
@@ -22,20 +22,6 @@ function authenticateUser(username, password, callback) {
 }
 
 module.exports = {
-    dummyLogin: function(username, pass, callback) {
-        if (callback && username==='ben') {
-            localStorage.access_token = 'wow fantastic baby'
-            callback({
-                authenticated: true,
-            });
-            return true;
-        } else {
-            callback({
-                authenticated: false,
-            });
-            return false;
-        }
-    },
     login: function(username, pass, callback) {
         if (this.isLoggedIn()) {
             if (callback) {
@@ -46,13 +32,12 @@ module.exports = {
 
         authenticateUser(username, pass, function(res) {
             var isAuth = false;
-
             if (res.authenticated) {
-                localStorage.access_token = res.access_token;
                 isAuth = true;
+                localStorage.access_token = res.access_token;
             }
             if (callback) {
-                callback({isAuthenticated: isAuth});
+                callback({authenticated: isAuth});
             }
             return isAuth;
         });

@@ -21,9 +21,9 @@ var Login = React.createClass({
             password: this.refs.password.getDOMNode().value
         };
 
-        Auth.dummyLogin(user.username, user.password, (function(res) {
+        Auth.login(user.username, user.password, (function(res) {
             if(res.authenticated) {
-                this.transitionTo('/');
+                this.transitionTo('/search');
             } else {
                 this.setState({ error: true })
             }
