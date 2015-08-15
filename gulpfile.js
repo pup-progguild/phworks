@@ -55,7 +55,7 @@ gulp.task('html', function() {
 
 gulp.task('css', function() {
     return gulp.src(path.CSS)
-               .pipe(gulp.dest(path.DEST_BUILD));
+               .pipe(gulp.dest(path.DEST_BUILD + '/css'));
 });
 
 gulp.task('js', function() {
