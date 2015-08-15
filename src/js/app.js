@@ -8,6 +8,6 @@ var Routes = require('./components/Routes');
 Router.run(Routes, function(Handler) {
     React.render(
         <Handler />,
-        document.getElementById('content')
+        document.body
     );
 });
