@@ -9,7 +9,17 @@ var Profile = React.createClass({
         $.ajax(this.state.ajaxUrl, {
             type: 'GET',
             success: function(res) {
-                console.log(res.user);
+                var user = res.user;
+                this.setState({
+                    name: user.name,
+                    username: user.username,
+                    email: user.email,
+                    contact: user.contact,
+                    profileSummary: user.profile_summary,
+                    rating: user.rating,
+                    provname: user.provname,
+                    cityname: user.cityname
+                });
             }.bind(this),
             error: function(res) {
                 console.log('Profile failed');
@@ -18,10 +28,10 @@ var Profile = React.createClass({
     },
     getInitialState: function() {
         var states = {
+            name: '',
             username: '',
             email: '',
             contact: '',
-            location: '',
             profileSummary: '',
             rating: 0,
             provname: '',
@@ -37,7 +47,17 @@ var Profile = React.createClass({
     },
     render: function() {
         return (
-            <h1>Profile</h1>
+            <div id="profile">
+                <h1>Profile</h1>
+                <p>{this.state.name}</p>
+                <p>{this.state.username}</p>
+                <p>{this.state.email}</p>
+                <p>{this.state.contact}</p>
+                <p>{this.state.profileSummary}</p>
+                <p>{this.state.rating}</p>
+                <p>{this.state.provname}</p>
+                <p>{this.state.cityname}</p>
+            </div>
         );
     }
 });
