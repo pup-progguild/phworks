@@ -16,6 +16,7 @@ var NavBar = React.createClass({
                 <Navbar brand="PHWorks">
                     <Nav>
                         <NavItemLink to="home">Home</NavItemLink>
+                        <NavItemLink to="login">Login</NavItemLink>
                     </Nav>
                 </Navbar>
                 <RouteHandler />
