@@ -10,7 +10,6 @@ var Profile = React.createClass({
             type: 'GET',
             success: function(res) {
                 var user = res.user;
-                console.log(user);
                 this.setState({
                     name: user.name,
                     username: user.username,
@@ -23,9 +22,6 @@ var Profile = React.createClass({
                     role: user.role,
                     tags: user.tags
                 });
-            }.bind(this),
-            error: function(res) {
-                console.log('Profile failed');
             }.bind(this)
         });
     },

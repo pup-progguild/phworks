@@ -1,11 +1,16 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
+    Navigation = require('react-router').Navigation,
     Auth = require('./Auth');
 
 var Logout = React.createClass({
-    componentDidMount: function() {
+    mixins: [
+        Navigation
+    ],
+    componentWillMount: function() {
         Auth.logout();
+        this.transitionTo('/');
     },
     render: function() {
         return (
