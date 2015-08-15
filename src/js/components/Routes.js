@@ -10,6 +10,7 @@ var Route = Router.Route,
 var NavBar = require('./NavBar'),
     Home = require('./Home'),
     Login = require('./Login'),
+    Logout = require('./Logout'),
     Register = require('./Register'),
     NotFound = require('./NotFound');
 
@@ -17,6 +18,7 @@ var routes = (
     <Route path="/" handler={NavBar}>
         <DefaultRoute name="home" handler={Home} />
         <Route name="login" handler={Login} />
+        <Route name="logout" handler={Logout} />
         <Route name="register" handler={Register} />
         <NotFoundRoute handler={NotFound} />
     </Route>

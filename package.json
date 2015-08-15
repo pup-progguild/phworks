@@ -18,6 +18,7 @@
     "watchify": "^3.3.1"
   },
   "dependencies": {
+    "jquery": "^1.11.3",
     "pushstate-server": "^1.6.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.5",

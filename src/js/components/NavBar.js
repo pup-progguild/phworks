@@ -3,7 +3,8 @@
 var React = require('react'),
     ReactBootstrap = require('react-bootstrap'),
     ReactRouterBootstrap = require('react-router-bootstrap'),
-    RouteHandler = require('react-router').RouteHandler;
+    RouteHandler = require('react-router').RouteHandler,
+    Auth = require('./Auth');
 
 var Nav = ReactBootstrap.Nav,
     Navbar = ReactBootstrap.Navbar,
@@ -16,7 +17,11 @@ var NavBar = React.createClass({
                 <Navbar brand="PHWorks">
                     <Nav>
                         <NavItemLink to="home">Home</NavItemLink>
-                        <NavItemLink to="login">Login</NavItemLink>
+                        {Auth.isLoggedIn() ? (
+                            <NavItemLink to="logout">Logout</NavItemLink>
+                        ) : (
+                            <NavItemLink to="login">Login</NavItemLink>
+                        )}
                     </Nav>
                 </Navbar>
                 <RouteHandler />
