@@ -14,13 +14,12 @@ var NavBar = React.createClass({
     render: function() {
         return (
             <div className="page-container page-mode-rtl">
-            
-            <!-- START PAGE SIDEBAR -->
+
             <div className="page-sidebar page-sidebar-fixed scroll">
-                <!-- START X-NAVIGATION -->
+
                 <ul className="x-navigation">
                     <li className="xn-logo">
-                        <a href="index.html">Joli Admin</a>
+                        <a href="index.html">PHWork</a>
                         <a href="#" className="x-navigation-control"></a>
                     </li>
                     <li className="xn-profile">
@@ -42,17 +41,31 @@ var NavBar = React.createClass({
                         </div>                                                                        
                     </li>
                     <li className="xn-title">Navigation</li>
-                    <li>
-                        <a href="index.html"><span className="fa fa-desktop"></span> <span className="xn-text">Dashboard</span></a>                        
-                    </li>                    
+
+                    {Auth.isLoggedIn() && (
+                        <li>
+                            <a href="index.html"><span className="fa fa-desktop"></span> <span className="xn-text" to="search">Search</span></a>                        
+                        </li>     
+                        // <NavItemLink to="search">Search</NavItemLink>
+                    )}
+                    {Auth.isLoggedIn() && (
+                        <li>
+                            <a href="index.html"><span className="fa fa-desktop"></span> <span className="xn-text" to="profile" >Profile</span></a>                        
+                        </li>   
+                        // <NavItemLink to="profile">Profile</NavItemLink>
+                    )}
+                    // {Auth.isLoggedIn() && (
+                    //     <NavItemLink to="logout">Logout</NavItemLink>
+                    // )}
+           
                     
                 </ul>
-                <!-- END X-NAVIGATION VERTICAL -->                     
+        
                                             
             </div>            
-            <!-- END PAGE CONTENT -->
+
         </div>
-        
+
             // <div id="navWrapper">
             //     <Navbar brand="PHWorks">
             //         <Nav>
