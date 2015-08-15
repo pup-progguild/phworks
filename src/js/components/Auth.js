@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
 function authenticateUser(username, password, callback) {
-    $.ajax('http://10.232.5.215:8000/api/authenticate', {
+    $.ajax('http://192.168.0.107:8000/api/authenticate', {
         type: 'POST',
         data: {
             username: username,
