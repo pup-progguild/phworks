@@ -4,6 +4,14 @@ var React = require('react'),
     $ = require('jquery'),
     Auth = require('./Auth');
 
+var Option = React.createClass({
+    render: function() {
+        return (
+            <option value={this.props.id}>{this.props.name}</option>
+        );
+    }
+});
+
 var Search = React.createClass({
     getUserId: function() {
         $.ajax(this.state.userIdUrl, {
@@ -15,12 +23,12 @@ var Search = React.createClass({
             }.bind(this)
         });
     },
-    getService: function() {
-        $.ajax(this.state.servicesUrl, {
+    getFields: function() {
+        $.ajax(this.state.fieldsUrl, {
             type: 'GET',
             success: function(res) {
                 this.setState({
-                    userId: res.user.user_id
+                    fields: res
                 });
             }.bind(this)
         });
@@ -30,16 +38,38 @@ var Search = React.createClass({
 
         return ({
             userIdUrl: ip + '/api/authenticate/user?token=' + Auth.getToken(),
-            fieldsUrl: ip + '/api/fields'
+            fieldsUrl: ip + '/api/field',
+            fields: []
         });
     },
-    componentDidMount: function() {
+    search: function(e) {
+        e.preventDefault();
+        var sr = {
+            id: this.refs.field.getDOMNode().value,
+        };
+
+        console.log(sr.field);
+
+    },
+    componentWillMount: function() {
         this.getUserId();
+        this.getFields();
     },
     render: function() {
+        var options = this.state.fields.map(function(field) {
+            return <Option name={field.field_name} id={field.field_id} />
+        });
+
         return (
             <div id="search">
                 <h1>Search</h1>
+                fields:
+                <select ref="field">
+                    {options}
+                </select>
+                description:
+                <input ref="desc" type="text" />
+                <button type="submit" onClick={this.search}>search</button>
             </div>
         );
     }
