@@ -9,7 +9,6 @@ var gulp = require('gulp'),
 
 var path = {
     HTML: 'src/*.html',
-    CSS: 'src/css/*.css',
     JS: './src/js/app.js',
     JS_OUT_DEST: 'build/js/',
     JS_OUT_NAME: 'app.js',
@@ -53,11 +52,6 @@ gulp.task('html', function() {
                .pipe(gulp.dest(path.DEST_BUILD));
 });
 
-gulp.task('css', function() {
-    return gulp.src(path.CSS)
-               .pipe(gulp.dest(path.DEST_BUILD + '/css'));
-});
-
 gulp.task('js', function() {
   return buildScript(path.JS, false);
 });
@@ -68,11 +62,10 @@ gulp.task('server', function() {
 
 gulp.task('watch', function() {
     gulp.watch(path.HTML, ['html']);
-    gulp.watch(path.CSS, ['css']);
     return buildScript(path.JS, true);
 });
 
-gulp.task('build', ['html', 'css', 'js']);
+gulp.task('build', ['html', 'js']);
 
 gulp.task('serve', ['build', 'watch', 'server']);
 
