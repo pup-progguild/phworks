@@ -6,7 +6,17 @@ var React = require('react'),
 
 var Search = React.createClass({
     getUserId: function() {
-        $.ajax(this.state.ajaxUrl, {
+        $.ajax(this.state.userIdUrl, {
+            type: 'GET',
+            success: function(res) {
+                this.setState({
+                    userId: res.user.user_id
+                });
+            }.bind(this)
+        });
+    },
+    getService: function() {
+        $.ajax(this.state.servicesUrl, {
             type: 'GET',
             success: function(res) {
                 this.setState({
@@ -16,9 +26,11 @@ var Search = React.createClass({
         });
     },
     getInitialState: function() {
+        var ip = 'http://192.168.1.5:8000';
+
         return ({
-            ajaxUrl: 'http://192.168.0.107:8000' +
-                     '/api/authenticate/user?token=' + Auth.getToken()
+            userIdUrl: ip + '/api/authenticate/user?token=' + Auth.getToken(),
+            fieldsUrl: ip + '/api/fields'
         });
     },
     componentDidMount: function() {
@@ -28,7 +40,6 @@ var Search = React.createClass({
         return (
             <div id="search">
                 <h1>Search</h1>
-                <p>{this.state.userId}</p>
             </div>
         );
     }

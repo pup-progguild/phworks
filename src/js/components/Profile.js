@@ -26,9 +26,10 @@ var Profile = React.createClass({
         });
     },
     getInitialState: function() {
+        var ip = 'http://192.168.1.5:8000';
+
         return ({
-            ajaxUrl: 'http://192.168.0.107:8000' +
-                     '/api/authenticate/user?token=' + Auth.getToken()
+            ajaxUrl: ip + '/api/authenticate/user?token=' + Auth.getToken()
         });
     },
     componentWillMount: function() {
