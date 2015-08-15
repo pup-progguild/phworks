@@ -15,7 +15,6 @@ var Login = React.createClass({
     ],
     login: function(e) {
         e.preventDefault();
-
         var user = {
             username: this.refs.username.getDOMNode().value,
             password: this.refs.password.getDOMNode().value
@@ -23,7 +22,7 @@ var Login = React.createClass({
 
         Auth.login(user.username, user.password, (function(res) {
             if(res.authenticated) {
-                this.transitionTo('/search');
+                this.transitionTo('/profile');
             } else {
                 this.setState({ error: true })
             }
@@ -34,17 +33,48 @@ var Login = React.createClass({
     },
     render: function() {
         return (
-            <div id="login">
-                <h1>Login</h1>
-                Username:
-                <input ref="username" type="text" />
-                Password:
-                <input ref="password" type="text" />
-                <button type="submit" onClick={this.login}>Login</button>
-                <button onClick={this.register}>Register</button>
-                {this.state.error && (
-                    <h5>Incorrect username or password</h5>
-                )}
+             <div className="login-container" id="login">
+            
+                <div className="login-box animated fadeInDown">
+                    <div className="login-logo"></div>
+                    <div className="login-body">
+                        <div className="login-title"><strong>Welcome</strong>, Please login</div>
+                        <form className="form-horizontal">
+                        <div className="form-group">
+                            <div className="col-md-12">
+                                <input ref="username" type="text" className="form-control" placeholder="Username"/>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="col-md-12">
+                                <input ref="password" type="password" className="form-control" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                        {this.state.error && (
+                                <h5>Incorrect username or password</h5>
+                            )}
+                            <div className="col-md-6">
+                                <a href="#" className="btn btn-link btn-block">Forgot your password?</a>
+                            </div>
+                            <div className="col-md-6">
+                                <button className="btn btn-info btn-block" type="submit" onClick={this.login}>Log In</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div className="login-footer">
+                        <div className="pull-left">
+                            &copy; 2015 PHWorks
+                        </div>
+                        <div className="pull-right">
+                            <a href="#">About</a> |
+                            <a href="#">Privacy</a> |
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         );
     }
