@@ -55,9 +55,6 @@ var Login = React.createClass({
                                 <h5>Incorrect username or password</h5>
                             )}
                             <div className="col-md-6">
-                                <a href="#" className="btn btn-link btn-block">Forgot your password?</a>
-                            </div>
-                            <div className="col-md-6">
                                 <button className="btn btn-info btn-block" type="submit" onClick={this.login}>Log In</button>
                             </div>
                         </div>
