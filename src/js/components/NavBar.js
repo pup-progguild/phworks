@@ -16,7 +16,11 @@ var NavBar = React.createClass({
             <div id="navWrapper">
                 <Navbar brand="PHWorks">
                     <Nav>
-                        <NavItemLink to="home">Home</NavItemLink>
+                        {Auth.isLoggedIn() ? (
+                            <NavItemLink to="search">Search</NavItemLink>
+                        ) : (
+                            <NavItemLink to="home">Home</NavItemLink>
+                        )}
                         {Auth.isLoggedIn() ? (
                             <NavItemLink to="logout">Logout</NavItemLink>
                         ) : (

@@ -12,6 +12,7 @@ var NavBar = require('./NavBar'),
     Login = require('./Login'),
     Logout = require('./Logout'),
     Register = require('./Register'),
+    Search = require('./Search'),
     NotFound = require('./NotFound');
 
 var routes = (
@@ -20,6 +21,7 @@ var routes = (
         <Route name="login" handler={Login} />
         <Route name="logout" handler={Logout} />
         <Route name="register" handler={Register} />
+        <Route name="search" handler={Search} />
         <NotFoundRoute handler={NotFound} />
     </Route>
 );
