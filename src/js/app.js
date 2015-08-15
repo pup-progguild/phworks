@@ -1,16 +1,13 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react'),
+    Router = require('react-router');
 
-var App = React.createClass({
-    render: function() {
-        return (
-            <h1>PHWorks</h1>
-        );
-    }
+var Routes = require('./components/Routes');
+
+Router.run(Routes, function(Handler) {
+    React.render(
+        <Handler />,
+        document.getElementById('content')
+    );
 });
-
-React.render(
-    <App />,
-    document.getElementById('content')
-);
