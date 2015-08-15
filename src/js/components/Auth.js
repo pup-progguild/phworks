@@ -50,7 +50,7 @@ module.exports = {
         }
     },
     getToken: function () {
-        return localStorage.token;
+        return localStorage.access_token;
     },
     isLoggedIn: function() {
         return !!localStorage.access_token;
