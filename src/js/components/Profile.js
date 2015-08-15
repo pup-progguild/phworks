@@ -18,29 +18,18 @@ var Profile = React.createClass({
                     profileSummary: user.profile_summary,
                     rating: user.rating,
                     provname: user.provname,
-                    cityname: user.cityname
+                    cityname: user.cityname,
+                    role: user.role,
+                    tags: user.tags
                 });
-            }.bind(this),
-            error: function(res) {
-                console.log('Profile failed');
             }.bind(this)
         });
     },
     getInitialState: function() {
-        var states = {
-            name: '',
-            username: '',
-            email: '',
-            contact: '',
-            profileSummary: '',
-            rating: 0,
-            provname: '',
-            cityname: '',
-            ajaxUrl: 'http://10.232.5.215:8000' +
+        return ({
+            ajaxUrl: 'http://192.168.0.107:8000' +
                      '/api/authenticate/user?token=' + Auth.getToken()
-        };
-
-        return states;
+        });
     },
     componentWillMount: function() {
         this.getUserInfo();
@@ -57,6 +46,7 @@ var Profile = React.createClass({
                 <p>{this.state.rating}</p>
                 <p>{this.state.provname}</p>
                 <p>{this.state.cityname}</p>
+                <p>{this.state.tags}</p>
             </div>
         );
     }

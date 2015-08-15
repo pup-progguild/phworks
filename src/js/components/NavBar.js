@@ -18,9 +18,11 @@ var NavBar = React.createClass({
                     <Nav>
                         {Auth.isLoggedIn() && (
                             <NavItemLink to="search">Search</NavItemLink>
-                        ) && (
+                        )}
+                        {Auth.isLoggedIn() && (
                             <NavItemLink to="profile">Profile</NavItemLink>
-                        ) &&  (
+                        )}
+                        {Auth.isLoggedIn() && (
                             <NavItemLink to="logout">Logout</NavItemLink>
                         )}
                     </Nav>

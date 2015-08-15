@@ -14,13 +14,14 @@ var NavBar = require('./NavBar'),
     Search = require('./Search'),
     Profile = require('./Profile'),
     NotFound = require('./NotFound');
+    Auth = require('./Auth');
 
 var routes = (
     <Route path="/" handler={NavBar}>
-        <DefaultRoute path="/" name="login" handler={Login} />
+        <DefaultRoute name="login" handler={Login} />
+        <Route name="search" handler={Search} />
         <Route name="logout" handler={Logout} />
         <Route name="register" handler={Register} />
-        <Route name="search" handler={Search} />
         <Route name="profile" handler={Profile} />
         <NotFoundRoute handler={NotFound} />
     </Route>
