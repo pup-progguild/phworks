@@ -5,7 +5,7 @@ var React = require('react'),
 
 var Routes = require('./components/Routes');
 
-Router.run(Routes, function(Handler) {
+Router.run(Routes, Router.HistoryLocation, function(Handler) {
     React.render(
         <Handler />,
         document.body

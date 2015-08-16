@@ -34,7 +34,7 @@ var Search = React.createClass({
         });
     },
     getInitialState: function() {
-        var ip = 'http://192.168.1.5:8000';
+        var ip = 'http://49.146.237.136:8000';
 
         return ({
             userIdUrl: ip + '/api/authenticate/user?token=' + Auth.getToken(),

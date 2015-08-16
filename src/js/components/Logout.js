@@ -10,7 +10,7 @@ var Logout = React.createClass({
     ],
     componentWillMount: function() {
         Auth.logout();
-        this.transitionTo('/');
+        this.transitionTo('/login');
     },
     render: function() {
         return (
