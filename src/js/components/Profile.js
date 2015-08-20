@@ -48,6 +48,7 @@ var Profile = React.createClass({
                 <p>{this.state.provname}</p>
                 <p>{this.state.cityname}</p>
                 <p>{this.state.tags}</p>
+                <p>{this.state.role}</p>
             </div>
         );
     }
