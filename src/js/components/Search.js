@@ -4,6 +4,55 @@ var React = require('react'),
     $ = require('jquery'),
     Auth = require('./Auth');
 
+var SearchResultItem = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <p>{this.props.id}</p>
+                <p>{this.props.name}</p>
+                <p>{this.props.city}</p>
+                <p>{this.props.prov}</p>
+                <p>{this.props.city}</p>
+                <p>{this.props.profile_summary}</p>
+                <p>{this.props.rating}</p>
+                <p>{this.props.tagPoints}</p>
+                <p>{this.props.tags}</p>
+                <p>{this.props.locPoints}</p>
+                <p>{this.props.number}</p>
+                <p>{this.props.email}</p>
+                <hr />
+            </div>
+        );
+    }
+});
+
+var SearchResult = React.createClass({
+    render: function() {
+        var results = this.props.results.map(function(result) {
+            return <SearchResultItem
+                        id={result.user_id}
+                        name={result.name}
+                        city={result.city_name}
+                        prov={result.provname}
+                        profile_summary={result.profile_summary}
+                        rating={result.rating}
+                        tagPoints={result.tagPoints}
+                        tags={result.tags}
+                        locPoints={result.locationPoints}
+                        number={result.contact}
+                        email={result.email}
+                   />;
+        });
+        console.log(results);
+        return (
+            <div>
+                <h1>Search Results: </h1>
+                {results}
+            </div>
+        );
+    }
+});
+
 var Option = React.createClass({
     render: function() {
         return (
@@ -33,23 +82,45 @@ var Search = React.createClass({
             }.bind(this)
         });
     },
+    search: function(cid, id, desc, callback) {
+        $.ajax(this.state.searchUrl, {
+            type: 'POST',
+            data: {
+                field: id,
+                client_id: cid,
+                description: desc,
+                token: Auth.getToken()
+            },
+            success: function(res) {
+                callback(res);
+            }.bind(this)
+        });
+    },
     getInitialState: function() {
         var ip = 'http://128.199.227.235';
 
         return ({
             userIdUrl: ip + '/api/authenticate/user?token=' + Auth.getToken(),
             fieldsUrl: ip + '/api/field',
-            fields: []
+            searchUrl: ip + '/api/request',
+            textUrl: ip + '/api/send',
+            fields: [],
+            searchToggle: false
         });
     },
-    search: function(e) {
+    onSearch: function(e) {
         e.preventDefault();
         var sr = {
             id: this.refs.field.getDOMNode().value,
+            desc: this.refs.desc.getDOMNode().value
         };
 
-        console.log(sr.field);
-
+        this.search(this.state.userId, sr.id, sr.desc, (function(res) {
+            this.setState({
+                searchResult: res,
+                searchToggle: true
+            });
+        }).bind(this));
     },
     componentWillMount: function() {
         this.getUserId();
@@ -69,7 +140,10 @@ var Search = React.createClass({
                 </select>
                 description:
                 <input ref="desc" type="text" />
-                <button type="submit" onClick={this.search}>search</button>
+                <button type="submit" onClick={this.onSearch}>search</button>
+                {this.state.searchToggle && (
+                    <SearchResult results={this.state.searchResult}/>
+                )}
             </div>
         );
     }
