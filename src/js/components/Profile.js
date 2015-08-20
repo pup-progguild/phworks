@@ -26,7 +26,7 @@ var Profile = React.createClass({
         });
     },
     getInitialState: function() {
-        var ip = 'http://49.146.237.136:8000';
+        var ip = 'http://128.199.227.235';
 
         return ({
             ajaxUrl: ip + '/api/authenticate/user?token=' + Auth.getToken()

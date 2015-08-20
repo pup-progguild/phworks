@@ -1,7 +1,7 @@
 var $ = require('jquery');
 
 function authenticateUser(username, password, callback) {
-    var ip = 'http://49.146.237.136:8000';
+    var ip = 'http://128.199.227.235';
 
     $.ajax(ip + '/api/authenticate', {
         type: 'POST',
