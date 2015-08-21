@@ -1,7 +1,11 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Navigation = require('react-router').Navigation;
+    Navigation = require('react-router').Navigation,
+    ReactBootstrap = require('react-bootstrap'),
+    Navbar = ReactBootstrap.Navbar,
+    Nav = ReactBootstrap.Nav,
+    NavItem = ReactBootstrap.NavItem;
 
 var NavBar = React.createClass({
     mixins: [
@@ -18,13 +22,13 @@ var NavBar = React.createClass({
     },
     render: function() {
         return (
-            <div id="navbar">
-                <ul>
-                    <li><a href="#" onClick={this.goToSearch}>Search</a></li>
-                    <li><a href="#" onClick={this.goToProfile}>Profile</a></li>
-                    <li><a href="#" onClick={this.goToLogout}>Logout</a></li>
-                </ul>
-            </div>
+            <Navbar brand="PHWorks">
+                <Nav>
+                    <NavItem href="#" onClick={this.goToSearch}>Search</NavItem>
+                    <NavItem href="#" onClick={this.goToProfile}>Profile</NavItem>
+                    <NavItem href="#" onClick={this.goToLogout}>Logout</NavItem>
+                </Nav>
+            </Navbar>
         );
     }
 });
