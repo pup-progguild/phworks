@@ -18,7 +18,7 @@ var Logout = React.createClass({
         return (
             <div>
                 <h1>you are now logout.</h1>
-                <button onClick={this.goToLogin}>Go to login</button>
+                <a href="#" onClick={this.goToLogin}>Go to login</a>
             </div>
         );
     }
