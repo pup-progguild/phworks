@@ -2,7 +2,8 @@
 
 var React = require('react'),
     $ = require('jquery'),
-    Auth = require('./Auth');
+    Auth = require('./Auth'),
+    NavBar = require('./NavBar');
 
 var SearchResultItem = React.createClass({
     render: function() {
@@ -133,6 +134,7 @@ var Search = React.createClass({
 
         return (
             <div id="search">
+                <NavBar />
                 <h1>Search</h1>
                 fields:
                 <select ref="field">

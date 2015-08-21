@@ -2,7 +2,8 @@
 
 var React = require('react'),
     $ = require('jquery'),
-    Auth = require('./Auth');
+    Auth = require('./Auth'),
+    NavBar = require('./NavBar');
 
 var Profile = React.createClass({
     getUserInfo: function() {
@@ -38,6 +39,7 @@ var Profile = React.createClass({
     render: function() {
         return (
             <div id="profile">
+                <NavBar />
                 <h1>Profile</h1>
                 <p>{this.state.name}</p>
                 <p>{this.state.username}</p>
