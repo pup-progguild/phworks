@@ -7,7 +7,8 @@ var React = require('react'),
     ReactBootstrap = require('react-bootstrap'),
     Row = ReactBootstrap.Row,
     Col = ReactBootstrap.Col,
-    Thumbnail = ReactBootstrap.Thumbnail;
+    Thumbnail = ReactBootstrap.Thumbnail,
+    Glyphicon = ReactBootstrap.Glyphicon;
 
 var Profile = React.createClass({
     getUserInfo: function() {
@@ -39,22 +40,22 @@ var Profile = React.createClass({
     },
     render: function() {
         return (
-            <div>
+            <div id="profile">
                 <NavBar />
-                <Row className="container">
+                <Row>
                     <Col lg={3} lgOffset={3}>
-                        <Thumbnail src="https://avatars1.githubusercontent.com/u/9935276" alt="Profile Photo" bsSize="small" />
+                        <Thumbnail src="https://avatars1.githubusercontent.com/u/9935276" alt="Profile Photo" />
                         <h2>{this.state.name}</h2>
-                        <p><span className="fa fa-map-marker"></span>&nbsp;&nbsp;{this.state.cityname}, {this.state.provname}</p>
+                        <p><Glyphicon glyph="map-marker" />&nbsp;&nbsp;{this.state.cityname}, {this.state.provname}</p>
                     </Col>
                     <Col lg={6}>
-                        <h3><span className="fa fa-book"></span>&nbsp;&nbsp;About me</h3>
+                        <h3><Glyphicon glyph="book" />&nbsp;&nbsp;About me</h3>
                         <p>{this.state.profileSummary}</p>
-                        <h3><span className="fa fa-envelope-o"></span>&nbsp;&nbsp;Contact</h3>
+                        <h3><Glyphicon glyph="envelope" />&nbsp;&nbsp;Contact</h3>
                         <p>email: {this.state.email}</p>
                         <p>phone: {this.state.contact}</p>
 
-                        <h3><span className="fa fa-star"></span>&nbsp;&nbsp;Rating</h3>
+                        <h3><Glyphicon glyph="star" />&nbsp;&nbsp;Rating</h3>
                         <p>{this.state.rating}</p>
                     </Col>
                 </Row>
