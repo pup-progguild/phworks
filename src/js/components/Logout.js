@@ -10,11 +10,16 @@ var Logout = React.createClass({
     ],
     componentWillMount: function() {
         Auth.logout();
-        this.transitionTo('/login');
+    },
+    goToLogin: function() {
+        this.transitionTo('/');
     },
     render: function() {
         return (
-            <h1>you are now logout.</h1>
+            <div>
+                <h1>you are now logout.</h1>
+                <button onClick={this.goToLogin}>Go to login</button>
+            </div>
         );
     }
 });
