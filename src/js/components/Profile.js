@@ -3,7 +3,11 @@
 var React = require('react'),
     $ = require('jquery'),
     Auth = require('./Auth'),
-    NavBar = require('./NavBar');
+    NavBar = require('./NavBar'),
+    ReactBootstrap = require('react-bootstrap'),
+    Row = ReactBootstrap.Row,
+    Col = ReactBootstrap.Col,
+    Thumbnail = ReactBootstrap.Thumbnail;
 
 var Profile = React.createClass({
     getUserInfo: function() {
@@ -13,15 +17,12 @@ var Profile = React.createClass({
                 var user = res.user;
                 this.setState({
                     name: user.name,
-                    username: user.username,
                     email: user.email,
                     contact: user.contact,
                     profileSummary: user.profile_summary,
                     rating: user.rating,
                     provname: user.provname,
                     cityname: user.cityname,
-                    role: user.role,
-                    tags: user.tags
                 });
             }.bind(this)
         });
@@ -38,19 +39,25 @@ var Profile = React.createClass({
     },
     render: function() {
         return (
-            <div id="profile">
+            <div>
                 <NavBar />
-                <h1>Profile</h1>
-                <p>{this.state.name}</p>
-                <p>{this.state.username}</p>
-                <p>{this.state.email}</p>
-                <p>{this.state.contact}</p>
-                <p>{this.state.profileSummary}</p>
-                <p>{this.state.rating}</p>
-                <p>{this.state.provname}</p>
-                <p>{this.state.cityname}</p>
-                <p>{this.state.tags}</p>
-                <p>{this.state.role}</p>
+                <Row className="container">
+                    <Col lg={3} lgOffset={3}>
+                        <Thumbnail src="https://avatars1.githubusercontent.com/u/9935276" alt="Profile Photo" bsSize="small" />
+                        <h2>{this.state.name}</h2>
+                        <p><span className="fa fa-map-marker"></span>&nbsp;&nbsp;{this.state.cityname}, {this.state.provname}</p>
+                    </Col>
+                    <Col lg={6}>
+                        <h3><span className="fa fa-book"></span>&nbsp;&nbsp;About me</h3>
+                        <p>{this.state.profileSummary}</p>
+                        <h3><span className="fa fa-envelope-o"></span>&nbsp;&nbsp;Contact</h3>
+                        <p>email: {this.state.email}</p>
+                        <p>phone: {this.state.contact}</p>
+
+                        <h3><span className="fa fa-star"></span>&nbsp;&nbsp;Rating</h3>
+                        <p>{this.state.rating}</p>
+                    </Col>
+                </Row>
             </div>
         );
     }
